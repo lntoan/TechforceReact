@@ -6,7 +6,8 @@ import { FontAwesome } from '../../assets/icons';
 import { GradientButton } from '../../components/';
 import { scale, scaleModerate, scaleVertical} from '../../utils/scale';
 import { connect } from 'react-redux';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+// import googleLoginService from '../../config/google/googleConfig';
+import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 export default class loginComponent extends React.Component {
@@ -20,7 +21,6 @@ export default class loginComponent extends React.Component {
     this.login = this.login.bind(this);
     this.state = { username: '',
                    password: '',
-                   user: null
                  };
   }
 
@@ -28,6 +28,11 @@ export default class loginComponent extends React.Component {
     this.props.setErrorMessage('');
     //MessageBarManager.registerMessageBar(this.refs.alert);
     this._setupGoogleSignin();
+  }
+
+  componentWillUnmount() {
+    this.props.setErrorMessage('');
+    //MessageBarManager.unregisterMessageBar();
   }
 
   async _setupGoogleSignin() {
@@ -38,31 +43,12 @@ export default class loginComponent extends React.Component {
         webClientId: '490454164094-puj4nom4h97sdukqhtfmvhthjs1vqdoa.apps.googleusercontent.com',
         offlineAccess: false
       });
-
       const user = await GoogleSignin.currentUserAsync();
-      console.log(user);
-      this.setState({user});
+      this.props.setUser(user);
     }
     catch(err) {
       console.log("Google signin error", err.code, err.message);
     }
-  }
-
-  _signIn1() {
-    GoogleSignin.signIn()
-    .then((user) => {
-      console.log(user);
-      this.setState({user: user});
-    })
-    .catch((err) => {
-      console.log('WRONG SIGNIN', err);
-    })
-    .done();
-  }
-
-  componentWillUnmount() {
-    this.props.setErrorMessage('');
-    //MessageBarManager.unregisterMessageBar();
   }
 
   login = param => e =>{
@@ -77,8 +63,8 @@ export default class loginComponent extends React.Component {
             this.props.facebookLogin();
             break;
           case 'google':
-            this._signIn1();
-            //this.props.googleLogin();
+            //this._signIn1();
+            this.props.googleLogin();
             break;
         }
       //this.props.login(param);
@@ -109,16 +95,6 @@ export default class loginComponent extends React.Component {
                       source={require('../../assets/images/backgroundLoginV1DarkTheme.png')}/>);
     return image;
   }
-  //login = () => {
-  // login = param => e =>{
-  //     console.log('loi ne');
-  //     this.props.setUserName(this.state.username);
-  //     this.props.setPassword(this.state.password);
-  //     console.log('loi loi');
-  //     console.log(param);
-  //     this.props.login(param);
-  // }
-
 
   render() {
     let image = this._renderImage();
@@ -166,11 +142,6 @@ export default class loginComponent extends React.Component {
     return (
         <View style={{flex:1,alignItems: 'stretch'}}>
             {content}
-            <GoogleSigninButton
-              style={{width: 48, height: 48}}
-              size={GoogleSigninButton.Size.Icon}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={this._signIn1.bind(this)}/>
         </View>
     );
   }

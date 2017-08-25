@@ -37,6 +37,7 @@ export class SplashScreen extends React.Component {
         clearInterval(this.timer);
         setTimeout(() => {
           StatusBar.setHidden(false, 'slide');
+          //this._setupGoogleSignin();
           let toHome = NavigationActions.reset({
             index: 0,
             //actions: [this.props.navigation.dispatch({type: 'Login'})]

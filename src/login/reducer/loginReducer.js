@@ -4,7 +4,8 @@ const initialState = {
     password: '',
     authorizing: false,
     authorized: false,
-    errorMessage: ''
+    errorMessage: '',
+    user: null
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -34,6 +35,10 @@ const loginReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 authorizing: false,
                 authorized: true
+            });
+        case 'SET_USER':
+            return Object.assign({}, state, {
+                user: action.user
             });
         case 'USER_NO_EXIST':
             return Object.assign({}, state, {

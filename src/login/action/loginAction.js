@@ -25,6 +25,11 @@ export const setErrorMessage = (errorMessage) => ({
     errorMessage
 });
 
+export const setUser = (user) => ({
+    type: 'SET_USER',
+    user
+});
+
 export const startAuthorizing = () => ({
     type: 'USER_START_AUTHORIZING'
 });
@@ -57,33 +62,57 @@ export const firebaseLogin = () => {
 }
 
 export const googleLogin = () => {
-    console.log('googleLogin');
-    console.log(GoogleSignin);
-    GoogleSignin.signIn()
-    .then((user) => {
+
+    return function (dispatch, getState) {
+      dispatch(setErrorMessage(''));
+      dispatch(startAuthorizing());
+      //const user = await GoogleSignin.currentUserAsync();
+      const user =  getState().loginReducer.user;
+      console.log('thong tin user');
       console.log(user);
-      //this.setState({user: user});
-    })
-    .catch((err) => {
-      console.log('WRONG SIGNIN', err);
-    })
-    .done();
-    // return function (dispatch, getState) {
-    //     dispatch(setErrorMessage(''));
-    //     dispatch(startAuthorizing());
-    //     firebaseApp.auth().signInWithEmailAndPassword(getState().loginReducer.username, getState().loginReducer.password
-    //     ).then((userData) =>
-    //       {
-    //         dispatch(userAuthorized());
-    //         dispatch(NavigationActions.navigate({ routeName: 'Home' }));
-    //       }
-    //     ).catch((error) =>
-    //       {
-    //         dispatch(userAuthorized());
-    //         dispatch(setErrorMessage(error.message))
-    //         console.log(error);
-    //       });
-    // }
+      if (user == null){
+        GoogleSignin.signIn()
+        .then((user) => {
+          // create a new firebase credential with the token
+          const credential = firebaseApp.auth.GoogleAuthProvider.GetCredential(user.idToken,user.accessToken);
+          // login with credential
+          firebaseApp.auth().signInWithCredential(credential
+          ).then((userData) =>
+            {
+              dispatch(userAuthorized());
+              dispatch(NavigationActions.navigate({ routeName: 'Home' }));
+            }
+          ).catch((error) =>
+            {
+              dispatch(userAuthorized());
+              dispatch(setErrorMessage(error.message))
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          dispatch(userAuthorized());
+          dispatch(setErrorMessage(error.message))
+          console.log('WRONG SIGNIN',error);
+        })
+        .done();
+      }else {
+        const credential = firebaseApp.auth.GoogleAuthProvider.credential(user.idToken,user.accessToken);
+        // login with credential
+        firebaseApp.auth().signInWithCredential(credential
+        ).then((userData) =>
+          {
+            dispatch(userAuthorized());
+            dispatch(NavigationActions.navigate({ routeName: 'Home' }));
+          }
+        ).catch((error) =>
+          {
+            dispatch(userAuthorized());
+            dispatch(setErrorMessage(error.message))
+            console.log(error);
+          });
+      }
+    }
+
 }
 
 export const facebookLogin = () => {

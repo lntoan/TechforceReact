@@ -3,8 +3,10 @@ import { bindActionCreators } from 'redux';
 import { setUserName, setPassword, setUserAvatar,firebaseLogin,
   facebookLogin,
   googleLogin,
-  setErrorMessage } from '../action/loginAction';
+  setErrorMessage,
+  setUser } from '../action/loginAction';
 import loginComponent  from '../component/loginComponent';
+
 const mapStateToProps = (state) => {
   return {
     authorizing: state.loginReducer.authorizing,
@@ -20,6 +22,7 @@ const mapDispatchToProps = dispatch => (
     setPassword,
     setUserAvatar,
     setErrorMessage,
+    setUser,
     firebaseLogin,
     facebookLogin,
     googleLogin
