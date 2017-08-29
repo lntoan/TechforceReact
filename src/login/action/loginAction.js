@@ -1,3 +1,5 @@
+/* @flow */
+
 import firebaseApp from '../../config/firebase/firebase';
 import DeviceInfo from 'react-native-device-info';
 import { Platform } from 'react-native';
@@ -117,7 +119,6 @@ export const googleLogin = () => {
             dispatch(userAuthorized());
             dispatch(setErrorMessage(error.message))
             console.log(error);
-            alert(error);
           });
       }
     }
@@ -143,6 +144,7 @@ export const facebookLogin = () => {
           // create a new firebase credential with the token
           console.log('user facebook data');
           console.log(data);
+          initUser(data.accessToken);
           const credential = firebaseApp.auth.FacebookAuthProvider.credential(data.accessToken);
           // login with credential
           firebaseApp.auth().signInWithCredential(credential
@@ -198,8 +200,22 @@ export const signup = () => {
     }
 }
 
-// export const checkUserExists = () => {
-//     return function (dispatch) {
-//         dispatch(startAuthorizing());
-//     }
-// }
+export const initUser = (token) => {
+  fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + token)
+  .then((response) => response.json())
+  .then((json) => {
+    // Some user object has been set up somewhere, build that user here
+    console.log(json);
+    // user.name = json.name
+    // user.id = json.id
+    // user.user_friends = json.friends
+    // user.email = json.email
+    // user.username = json.name
+    // user.loading = false
+    // user.loggedIn = true
+    // user.avatar = setAvatar(json.id)
+  })
+  .catch(() => {
+    reject('ERROR GETTING DATA FROM FACEBOOK')
+  })
+}
