@@ -73,6 +73,10 @@
 		ED89971A30EE4EC6B51A6131 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F399C0DB9FF4BF5BB3C6DE6 /* libBVLinearGradient.a */; };
 		F432DB04326140739D5FFD46 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16F8B48168864FD186A60D8C /* Righteous-Regular.ttf */; };
 		F8EB5BA93EB4461DAE361572 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1565AEBAF7476BBCF101CB /* libsqlite3.0.tbd */; };
+		FE78D2721F557DAB0023D568 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */; };
+		FE78D2731F557DAB0023D568 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */; };
+		FE78D2741F557DAB0023D568 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */; };
+		FE78D2751F557DAB0023D568 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -434,6 +438,7 @@
 		E1973FAA440C4121BBE56CEB /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		F1E83769D2A64A66A73A5554 /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FB11329F7C0B442BA1E9B268 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
+		FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -719,6 +724,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FE78D2711F557DAB0023D568 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* TechforceReact */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TechforceReactTests */,
@@ -1299,6 +1305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE78D2731F557DAB0023D568 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1330,7 @@
 				F432DB04326140739D5FFD46 /* Righteous-Regular.ttf in Resources */,
 				8F52881C7C4D4845B2565B26 /* Roboto-Bold.ttf in Resources */,
 				96D4C49907954C54AD0A0CBF /* Roboto-Light.ttf in Resources */,
+				FE78D2721F557DAB0023D568 /* GoogleService-Info.plist in Resources */,
 				0517CE9F0FA24A7DB9A041F6 /* Roboto-Medium.ttf in Resources */,
 				B7C39C0879CB47D5BECD801F /* Roboto-Regular.ttf in Resources */,
 			);
@@ -1333,6 +1341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				FE78D2741F557DAB0023D568 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE78D2751F557DAB0023D568 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

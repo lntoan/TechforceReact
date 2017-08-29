@@ -35,16 +35,20 @@ export default class loginComponent extends React.Component {
     //MessageBarManager.unregisterMessageBar();
   }
 
-  async _setupGoogleSignin() {
+  _setupGoogleSignin() {
     try {
-      await GoogleSignin.hasPlayServices({ autoResolve: true });
-      await GoogleSignin.configure({
-        iosClientId: '490454164094-r4n1ofpbq8v34beejmpnq1cvr5a1tp1r.apps.googleusercontent.com',
-        webClientId: '490454164094-puj4nom4h97sdukqhtfmvhthjs1vqdoa.apps.googleusercontent.com',
+      GoogleSignin.configure({
+        iosClientId: '1060525590105-fi6k49f23b2t61nm8mdlhe1ouap008qv.apps.googleusercontent.com',
+        webClientId: '1060525590105-ebc2kntgl6da6kl3t2kt6ei28ikeg853.apps.googleusercontent.com',
         offlineAccess: false
+      })
+      .then(() => {
+        GoogleSignin.currentUserAsync().then((user) => {
+              console.log('USER', user);
+              this.props.setUser(user);
+            }).done();
       });
-      const user = await GoogleSignin.currentUserAsync();
-      this.props.setUser(user);
+      //await GoogleSignin.hasPlayServices({ autoResolve: true });
     }
     catch(err) {
       console.log("Google signin error", err.code, err.message);

@@ -41,8 +41,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-//            new RNGoogleSigninPackage(),
-//            new RNGoogleSigninPackage(),
             new RNDeviceInfo(),
             new FBSDKPackage(mCallbackManager),
             new RealmReactPackage(),

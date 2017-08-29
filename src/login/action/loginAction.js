@@ -74,11 +74,14 @@ export const googleLogin = () => {
         GoogleSignin.signIn()
         .then((user) => {
           // create a new firebase credential with the token
-          const credential = firebaseApp.auth.GoogleAuthProvider.GetCredential(user.idToken,user.accessToken);
+          const credential = firebaseApp.auth.GoogleAuthProvider.credential(user.idToken,user.accessToken);
+          console.log('credential');
+          console.log(credential);
           // login with credential
           firebaseApp.auth().signInWithCredential(credential
           ).then((userData) =>
             {
+              console.log('da login thanh cong');
               dispatch(userAuthorized());
               dispatch(NavigationActions.navigate({ routeName: 'Home' }));
             }
@@ -87,17 +90,22 @@ export const googleLogin = () => {
               dispatch(userAuthorized());
               dispatch(setErrorMessage(error.message))
               console.log(error);
+              alert(error);
             });
         })
         .catch((error) => {
           dispatch(userAuthorized());
           dispatch(setErrorMessage(error.message))
           console.log('WRONG SIGNIN',error);
+          alert(error);
         })
         .done();
       }else {
+        console.log('le ngoc toan');
         const credential = firebaseApp.auth.GoogleAuthProvider.credential(user.idToken,user.accessToken);
+        console.log(credential);
         // login with credential
+
         firebaseApp.auth().signInWithCredential(credential
         ).then((userData) =>
           {
@@ -109,6 +117,7 @@ export const googleLogin = () => {
             dispatch(userAuthorized());
             dispatch(setErrorMessage(error.message))
             console.log(error);
+            alert(error);
           });
       }
     }
@@ -132,6 +141,8 @@ export const facebookLogin = () => {
         })
         .then(data => {
           // create a new firebase credential with the token
+          console.log('user facebook data');
+          console.log(data);
           const credential = firebaseApp.auth.FacebookAuthProvider.credential(data.accessToken);
           // login with credential
           firebaseApp.auth().signInWithCredential(credential
@@ -147,16 +158,18 @@ export const facebookLogin = () => {
               console.log(error);
             });
         })
-        .then((currentUser) => {
-          if (currentUser === 'cancelled') {
-            console.log('cancelled');
-            dispatch(userAuthorized());
-          } else {
-            // now signed in
-            console.warn(JSON.stringify(currentUser.toJSON()));
-            //alert('now signed in');
-          }
-        })
+        // .then((currentUser) => {
+        //   console.log('currentUser');
+        //   console.log(currentUser);
+        //   if (currentUser === 'cancelled') {
+        //     console.log('cancelled');
+        //     dispatch(userAuthorized());
+        //   } else {
+        //     // now signed in
+        //     console.warn(JSON.stringify(currentUser.toJSON()));
+        //     //alert('now signed in');
+        //   }
+        // })
         .catch((error) => {
           dispatch(userAuthorized());
           dispatch(setErrorMessage(error.message))

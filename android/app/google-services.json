@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1060525590105-m6l4j1llf3gaoh195lm1fr1c6tg1b0hf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techforcereact",
+            "certificate_hash": "53e0af3cd41d6b70206bba53e485103efdf14972"
+          }
+        },
+        {
           "client_id": "1060525590105-ebc2kntgl6da6kl3t2kt6ei28ikeg853.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060525590105-ebc2kntgl6da6kl3t2kt6ei28ikeg853.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1060525590105-fi6k49f23b2t61nm8mdlhe1ouap008qv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.TechforceReact"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

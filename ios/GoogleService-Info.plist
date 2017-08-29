@@ -2,27 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>490454164094-r4n1ofpbq8v34beejmpnq1cvr5a1tp1r.apps.googleusercontent.com</string>
+	<string>1060525590105-fi6k49f23b2t61nm8mdlhe1ouap008qv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.490454164094-r4n1ofpbq8v34beejmpnq1cvr5a1tp1r</string>
+	<string>com.googleusercontent.apps.1060525590105-fi6k49f23b2t61nm8mdlhe1ouap008qv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAxoZY5xTh9_I_zM5vY1NM3OEIKdJOu4gY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1060525590105</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>org.reactjs.native.example.TechforceReact</string>
 	<key>PROJECT_ID</key>
-	<string>authen-176904</string>
+	<string>oauthen-73c30</string>
+	<key>STORAGE_BUCKET</key>
+	<string>oauthen-73c30.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
 	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:490454164094:ios:6d0eadc63414846a</string>
+	<string>1:1060525590105:ios:6d0eadc63414846a</string>
+	<key>DATABASE_URL</key>
+	<string>https://oauthen-73c30.firebaseio.com</string>
 </dict>
 </plist>
