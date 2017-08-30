@@ -11,8 +11,8 @@ const getMultimediaUrlByFormat = (multimedia, format) => {
   return matchingFormat.url;
 };
 
-export const reshapeNewsData = rnnynews => (
-  rnnynews.map(({ abstract, byline, geo_facet, multimedia, published_date, title, url }) => ({
+export const reshapeNewsData = rnnyReducer => (
+  rnnyReducer.map(({ abstract, byline, geo_facet, multimedia, published_date, title, url }) => ({
     description: abstract || '',
     author: byline ? byline.replace('By ', '') : '',
     location: geo_facet.length > 0 ? geo_facet[0] : '',

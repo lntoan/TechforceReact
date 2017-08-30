@@ -43,8 +43,12 @@ export default class rnnyCompoent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('nextProps');
+    console.log(nextProps);
+    console.log('data');
+    console.log(this.state.data);
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+      //dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
       initialLoading: false
     });
   }
