@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"adm-zip": "^0.4.7",
+		"babel-plugin-transform-remove-console": "^6.8.5",
 		"babel-preset-react-native": "^3.0.0",
 		"firebase": "^4.3.0",
 		"hoist-non-react-statics": "^2.2.2",
