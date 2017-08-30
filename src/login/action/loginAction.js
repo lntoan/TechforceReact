@@ -200,8 +200,31 @@ export const signup = () => {
     }
 }
 
+export const checkUserExists = () => {
+    return function (dispatch) {
+        dispatch(startAuthorizing());
+
+        firebase.auth()
+                .signInAnonymously()
+                .then(() => firebase.database()
+                                    .ref(`users/${DeviceInfo.getUniqueID()}`)
+                                    .once('value', (snapshot) => {
+                                        const val = snapshot.val();
+
+                                        if (val === null) {
+                                            dispatch(userNoExist());
+                                        }else{
+                                            dispatch(setUserName(val.name));
+                                            dispatch(setUserAvatar(val.avatar));
+                                            startChatting(dispatch);
+                                        }
+                                    }))
+                .catch(err => console.log(err))
+    }
+}
+
 export const initUser = (dispatch,token) => {
-  fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + token)
+  fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends,picture&access_token=' + token)
   .then((response) => response.json())
   .then((json) => {
     // Some user object has been set up somewhere, build that user here
