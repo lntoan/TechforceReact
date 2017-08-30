@@ -1,16 +1,17 @@
 import React from 'react';
-import { FlatList, View, Image, TouchableOpacity } from 'react-native';
-import {
-  RkCard, RkStyleSheet,
-  RkText
-} from 'react-native-ui-kitten';
+import { ListView,FlatList, View, Image, TouchableOpacity,RefreshControl,ActivityIndicator,
+         NetInfo,Linking,ViewPropTypes
+       } from 'react-native';
+import { RkCard, RkStyleSheet, RkText } from 'react-native-ui-kitten';
+import PropTypes from 'prop-types';
 import {Avatar} from '../../components';
 import {data} from '../../data';
 let moment = require('moment');
 
-export class Blogposts extends React.Component {
+
+export default class rnnyCompoent extends React.Component {
   static navigationOptions = {
-    title: 'Blogposts'.toUpperCase()
+    title: 'RNNY'.toUpperCase()
   };
 
   constructor(props) {
@@ -18,7 +19,44 @@ export class Blogposts extends React.Component {
 
     this.renderItem = this._renderItem.bind(this);
     this.state = {
-      data: data.getArticles('post')
+      data: data.getArticles('post'),
+      initialLoading: true,
+      modalVisible: false,
+      refreshing: false,
+      connected: true
+    }
+    this.refresh = this.refresh.bind(this);
+    this.handleConnectivityChange = this.handleConnectivityChange.bind(this);
+  }
+
+  handleConnectivityChange(isConnected) {
+    this.setState({
+      connected: isConnected
+    });
+    if (isConnected) {
+      this.refresh();
+    }
+  }
+
+  componentWillMount() {
+    NetInfo.isConnected.addEventListener('change', this.handleConnectivityChange);
+    this.refresh();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+      initialLoading: false
+    });
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('change', this.handleConnectivityChange);
+  }
+
+  refresh() {
+    if (this.props.loadRNNYNews) {
+      this.props.loadRNNYNews();
     }
   }
 
@@ -64,6 +102,11 @@ export class Blogposts extends React.Component {
     )
   }
 }
+
+rnnyCompoent.propTypes = {
+  rnnynews: PropTypes.arrayOf(PropTypes.object),
+  loadRNNYNews: PropTypes.func
+};
 
 let styles = RkStyleSheet.create(theme => ({
   container: {

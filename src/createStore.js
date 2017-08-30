@@ -6,6 +6,7 @@ import promiseMiddleware from 'redux-promise';
 import thunkMiddleware from 'redux-thunk';
 import appReducer from './reducers/TechforceNavReducer';
 import loginReducer from '../src/login/reducer/loginReducer';
+import rnnyReducer from '../src/rnny/reducer/rnnyReducer';
 import { AppNavigator} from '../src/containers/TechforceNavContainer'
 
 const middleWare = global.__DEV__ ? [logger, promiseMiddleware] : [promiseMiddleware];
@@ -16,6 +17,7 @@ export default (initialState = {}) => (
     combineReducers({
       appReducer,
       loginReducer,
+      rnnyReducer,
       nav: (state, action) => AppNavigator.router.getStateForAction(action, state)
     }),
     initialState,

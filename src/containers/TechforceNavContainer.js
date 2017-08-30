@@ -11,6 +11,8 @@ import {data} from '../data';
 import LoginButton from '../../src/login/component/loginComponent';
 import LoginV1Container from '../login/container/loginContainer';
 import SignUpContainer from '../login/container/signupContainer'
+import RNNYContainer from '../rnny/container/rnnyContainer';
+
 
 bootstrap();
 data.populateRealm();
@@ -25,6 +27,9 @@ const routeConfiguration = {
   },
   SignUp:{
     screen: SignUpContainer
+  },
+  RNNY:{
+    screen: RNNYContainer
   },
   Home: {
     screen: DrawerNavigator({
