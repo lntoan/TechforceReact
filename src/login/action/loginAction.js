@@ -144,7 +144,7 @@ export const facebookLogin = () => {
           // create a new firebase credential with the token
           console.log('user facebook data');
           console.log(data);
-          initUser(data.accessToken);
+          initUser(dispatch,data.accessToken);
           const credential = firebaseApp.auth.FacebookAuthProvider.credential(data.accessToken);
           // login with credential
           firebaseApp.auth().signInWithCredential(credential
@@ -200,12 +200,13 @@ export const signup = () => {
     }
 }
 
-export const initUser = (token) => {
+export const initUser = (dispatch,token) => {
   fetch('https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=' + token)
   .then((response) => response.json())
   .then((json) => {
     // Some user object has been set up somewhere, build that user here
     console.log(json);
+    dispatch(setUser(json));
     // user.name = json.name
     // user.id = json.id
     // user.user_friends = json.friends
