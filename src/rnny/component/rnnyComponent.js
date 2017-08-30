@@ -8,7 +8,6 @@ import {Avatar} from '../../components';
 import {data} from '../../data';
 let moment = require('moment');
 
-
 export default class rnnyCompoent extends React.Component {
   static navigationOptions = {
     title: 'RNNY'.toUpperCase()
