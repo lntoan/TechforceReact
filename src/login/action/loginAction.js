@@ -92,21 +92,19 @@ export const googleLogin = () => {
               dispatch(userAuthorized());
               dispatch(setErrorMessage(error.message))
               console.log(error);
-              alert(error);
+
             });
         })
         .catch((error) => {
           dispatch(userAuthorized());
           dispatch(setErrorMessage(error.message))
           console.log('WRONG SIGNIN',error);
-          alert(error);
+
         })
         .done();
       }else {
-        console.log('le ngoc toan');
+
         const credential = firebaseApp.auth.GoogleAuthProvider.credential(user.idToken,user.accessToken);
-        console.log(credential);
-        // login with credential
 
         firebaseApp.auth().signInWithCredential(credential
         ).then((userData) =>

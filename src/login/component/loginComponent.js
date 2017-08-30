@@ -6,8 +6,8 @@ import { FontAwesome } from '../../assets/icons';
 import { GradientButton } from '../../components/';
 import { scale, scaleModerate, scaleVertical} from '../../utils/scale';
 import { connect } from 'react-redux';
-// import googleLoginService from '../../config/google/googleConfig';
 import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+//import { passwordrecoveryCompoent } from './passwordrecoveryComponent';
 
 
 export default class loginComponent extends React.Component {
