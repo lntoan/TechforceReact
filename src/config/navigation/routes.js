@@ -1,5 +1,6 @@
 import {FontIcons} from '../../assets/icons';
 import * as Screens from '../../screens/index';
+import rnnyContainer from '../../rnny/container/rnnyContainer';
 import _ from 'lodash';
 
 export const MainRoutes = [
@@ -260,9 +261,9 @@ export const MainRoutes = [
 
 let menuRoutes = _.cloneDeep(MainRoutes);
 menuRoutes.unshift({
-  id: 'GridV2',
+  id: 'RNNYHome',//'GridV2',
   title: 'Start',
-  screen: Screens.GridV2,
+  screen: rnnyContainer,//Screens.GridV2,
   children: []
 },);
 

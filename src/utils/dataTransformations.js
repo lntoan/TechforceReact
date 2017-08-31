@@ -8,7 +8,7 @@ const getMultimediaUrlByFormat = (multimedia, format) => {
   if (!matchingFormat) {
     return '';
   }
-  return matchingFormat.url;
+  return (matchingFormat.url.length>0 ? matchingFormat.url : '');
 };
 
 export const reshapeNewsData = rnnyReducer => (
@@ -17,7 +17,7 @@ export const reshapeNewsData = rnnyReducer => (
     description: abstract || '',
     author: byline ? byline.replace('By ', '') : '',
     location: geo_facet.length > 0 ? geo_facet[0] : '',
-    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge').length > 0 ? getMultimediaUrlByFormat(multimedia, 'thumbLarge') : '' ,
+    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge'),
     date: moment(published_date).format('MMM Do YYYY'),
     title: title,
     url: url

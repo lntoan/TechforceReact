@@ -52,8 +52,8 @@ export const firebaseLogin = () => {
         ).then((userData) =>
           {
             dispatch(userAuthorized());
-            //dispatch(NavigationActions.navigate({ routeName: 'Home' }));
-            dispatch(NavigationActions.navigate({ routeName: 'RNNY' }));
+            dispatch(NavigationActions.navigate({ routeName: 'Home' }));
+            //dispatch(NavigationActions.navigate({ routeName: 'RNNY' }));
 
           }
         ).catch((error) =>

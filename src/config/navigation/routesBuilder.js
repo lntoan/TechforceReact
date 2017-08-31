@@ -31,6 +31,8 @@ let ThemedNavigationBar = withRkTheme(NavBar);
 
 const DrawerRoutes = Object.keys(main).reduce((routes, name) => {
   let stack_name = name;
+  console.log('stack_name');
+  console.log(stack_name);
   routes[stack_name] = {
     name: stack_name,
     screen: StackNavigator(flatRoutes, {
