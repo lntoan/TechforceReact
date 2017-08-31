@@ -2,13 +2,17 @@ import moment from 'moment';
 
 const getMultimediaUrlByFormat = (multimedia, format) => {
   if (!multimedia) {
-    return '';
+    return 'https://static01.nyt.com/images/2017/08/28/business/28BRAINWAVES1/28BRAINWAVES1-thumbStandard.jpg';
   }
+  
   const matchingFormat = multimedia.find(media => media.format === format);
   if (!matchingFormat) {
-    return '';
+    return 'https://static01.nyt.com/images/2017/08/29/insider/28UBERsub/28UBERsub-thumbStandard-v3.jpg';
+  }else{
+    return matchingFormat.url;
   }
-  return (matchingFormat.url.length>0 ? matchingFormat.url : '');
+
+  return 'https://static01.nyt.com/images/2017/08/27/world/middleeast/27propaganda-promo/27propaganda-promo-thumbStandard.png';
 };
 
 export const reshapeNewsData = rnnyReducer => (
