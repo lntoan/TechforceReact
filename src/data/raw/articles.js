@@ -1,6 +1,6 @@
 const articles = [{
   'id': 1,
-  'photo': require('../img/photo1.png'),
+  'photo': require('../img/photo1.png'), //../img/photo1.pnghttps://static01.nyt.com/images/2017/08/29/business/29DARA/29DARA-thumbLarge.jpg
   'type': 'article',
   'time': -300,
   'header': 'Plants Of Our Nature',

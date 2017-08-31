@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListView,FlatList, View, Image, TouchableOpacity,RefreshControl,ActivityIndicator,
-         NetInfo,Linking,ViewPropTypes
+         NetInfo,Linking,ViewPropTypes, ImageBackground
        } from 'react-native';
 import { RkCard, RkStyleSheet, RkText } from 'react-native-ui-kitten';
 import PropTypes from 'prop-types';
@@ -19,6 +19,7 @@ export default class rnnyCompoent extends React.Component {
     this.renderItem = this._renderItem.bind(this);
     this.state = {
       data: data.getArticles('post'),
+      //data: null,
       initialLoading: true,
       modalVisible: false,
       refreshing: false,
@@ -43,12 +44,8 @@ export default class rnnyCompoent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps');
-    console.log(nextProps);
-    console.log('data');
-    console.log(this.state.data);
     this.setState({
-      //dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+      data: nextProps.rnnynews,
       initialLoading: false
     });
   }
@@ -72,23 +69,23 @@ export default class rnnyCompoent extends React.Component {
       <TouchableOpacity
         delayPressIn={70}
         activeOpacity={0.8}
-        onPress={() => this.props.navigation.navigate('Article', {id: info.item.id})}>
+        onPress={() => this.props.navigation.navigate('Article', {id: info.item.iurl})}>
         <RkCard rkType='blog' style={styles.card}>
-          <Image rkCardImg source={info.item.photo}/>
+          <ImageBackground style={[styles.image]} source={{uri: info.item.imageUrl}} shouldRasterizeIOS/>
           <View rkCardHeader style={styles.content}>
             <RkText style={styles.section} rkType='header4'>{info.item.title}</RkText>
           </View>
           <View rkCardContent>
             <View>
-              <RkText rkType='primary3 mediumLine' numberOfLines={2}>{info.item.text}</RkText>
+              <RkText rkType='primary3 mediumLine' numberOfLines={2}>{info.item.description}</RkText>
             </View>
           </View>
           <View rkCardFooter>
             <View style={styles.userInfo}>
-              <Avatar style={styles.avatar} rkType='circle small' img={info.item.user.photo}/>
-              <RkText rkType='header6'>{`${info.item.user.firstName} ${info.item.user.lastName}`}</RkText>
+              {/* <Avatar style={styles.avatar} rkType='circle small' img={info.item.imageUrl}/> */}
+              <RkText rkType='header6' numberOfLines={2}>{`${info.item.author}`}</RkText>
             </View>
-            <RkText rkType='secondary2 hintColor'>{moment().add(info.item.time, 'seconds').fromNow()}</RkText>
+            <RkText rkType='secondary2 hintColor'>{info.item.date}</RkText>
           </View>
         </RkCard>
       </TouchableOpacity>
@@ -126,5 +123,9 @@ let styles = RkStyleSheet.create(theme => ({
   },
   avatar: {
     marginRight: 17
+  },
+  image: {
+    height: 150,
+    justifyContent: 'flex-end'
   }
 }));

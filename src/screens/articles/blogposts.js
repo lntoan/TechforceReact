@@ -32,6 +32,8 @@ export class Blogposts extends React.Component {
   }
 
   _renderItem(info) {
+    console.log('info--------');
+    console.log(info.item);
     return (
       <TouchableOpacity
         delayPressIn={70}

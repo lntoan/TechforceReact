@@ -13,13 +13,14 @@ const getMultimediaUrlByFormat = (multimedia, format) => {
 
 export const reshapeNewsData = rnnyReducer => (
   rnnyReducer.map(({ abstract, byline, geo_facet, multimedia, published_date, title, url }) => ({
+    id: url,
     description: abstract || '',
     author: byline ? byline.replace('By ', '') : '',
     location: geo_facet.length > 0 ? geo_facet[0] : '',
-    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge'),
+    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge').length > 0 ? getMultimediaUrlByFormat(multimedia, 'thumbLarge') : '' ,
     date: moment(published_date).format('MMM Do YYYY'),
-    title,
-    url
+    title: title,
+    url: url
   }))
 );
 

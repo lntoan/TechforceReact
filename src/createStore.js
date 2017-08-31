@@ -21,6 +21,6 @@ export default (initialState = {}) => (
       nav: (state, action) => AppNavigator.router.getStateForAction(action, state)
     }),
     initialState,
-    applyMiddleware(logger,thunkMiddleware)
+    applyMiddleware(logger,thunkMiddleware,promiseMiddleware)
   )
 );
